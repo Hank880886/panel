@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Hank 控制台 - Dashboard</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h2>Dashboard</h2>
+      <a class="small-btn" href="/logout">Logout</a>
+    </header>
+    <main id="content">
+      <p>讀取中...</p>
+    </main>
+  </div>
+
+  <script>
+    async function load() {
+      const res = await fetch('/api/me');
+      const data = await res.json();
+      const main = document.getElementById('content');
+      if (!data.logged) {
+        main.innerHTML = '<p>尚未登入。<a href="/">回到登入頁</a></p>';
+        return;
+      }
+
+      const user = data.user;
+      const guilds = data.guilds;
+
+      let html = `<div class="userinfo">
+                    <img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64" onerror="this.style.display='none'">
+                    <div><strong>${user.username}#${user.discriminator}</strong></div>
+                  </div>`;
+      html += '<h3>Your servers</h3>';
+      if (!guilds.length) {
+        html += '<p>你目前沒有加入任何伺服器。</p>';
+      } else {
+        html += '<div class="guilds">';
+        for (const g of guilds) {
+          const icon = g.icon ? `https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png?size=64` : '';
+          html += `<div class="guild">
+                    ${icon ? `<img src="${icon}" alt="icon">` : ''}
+                    <div class="gname">${g.name}</div>
+                    <a class="manage" href="/#">Manage</a>
+                  </div>`;
+        }
+        html += '</div>';
+      }
+      main.innerHTML = html;
+    }
+    load();
+  </script>
+</body>
+</html>
