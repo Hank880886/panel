@@ -1,0 +1,12 @@
+body { background:#0e0e12; color:#fff; font-family:Inter,Arial,Helvetica,sans-serif; margin:0; }
+.center { text-align:center; padding:80px 20px; }
+.btn { display:inline-block; padding:12px 22px; background:#5865F2; color:#fff; border-radius:8px; text-decoration:none; }
+.container { max-width:1000px; margin:30px auto; padding:20px; }
+header { display:flex; justify-content:space-between; align-items:center; }
+.userinfo { display:flex; gap:12px; align-items:center; margin-bottom:10px; }
+.guilds { display:flex; flex-wrap:wrap; gap:12px; margin-top:12px; }
+.guild { background:#151515; padding:12px; border-radius:8px; width:220px; display:flex; align-items:center; gap:10px; }
+.guild img { width:48px; height:48px; border-radius:8px; }
+.gname { font-size:14px; font-weight:600; }
+.manage { margin-left:auto; background:#00a8ff; padding:6px 8px; border-radius:6px; color:#fff; text-decoration:none; }
+.small-btn { background:#333; padding:8px 10px; border-radius:6px; color:#fff; text-decoration:none; }
